@@ -1,0 +1,9 @@
+.result-main {
+    width:450px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:30px;
+    padding: 25px;
+    background: #f1f1f1;
+    border: 1px solid #e5e5e5;
+}

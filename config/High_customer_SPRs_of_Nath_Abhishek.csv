@@ -1,0 +1,19 @@
+"High customer SPRs of Nath, Abhishek",anath,SPR,,,,,,,,,,,,,,,
+Updated on 23-Mar-2015 01:00:01 AM EDT,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+Task Number,Open Date,Customer,Module,Short Description,Type,Severity,Manager,Assigned To,Functional Area,Keyword,Submission Status,Respond By,Commit Build,Reported By,Build,Project Id,Target Build
+2133120-01,04-Jun-12,TOYOTA MOTOR CORPORATION,MANUFACTURING,"Part of tool path seems gouge in a model while play path of 4 axis Wire EDM sequence.
+New line comment.",A,3-HIGH,"Gupta, Arvind Kumar","Nath, Abhishek",WEDM,,OPEN,,,"Sato, Yoshiyuki",L-03-48,,
+2246120-01,05-Nov-14,PRO TECHNOLOGIES,MANUFACTURING,Remove material works incorrectly in turning operation,A,3-HIGH,"Gupta, Arvind Kumar","Nath, Abhishek",MISC,QA_PROCESSED_HIGH,OPEN,15-Dec-14,P-10-33,"Tang, Xiao Yun",P-10-28,,
+2246227-01,05-Nov-14,"RICHEMONT INTERNATIONAL,  S.A.",MANUFACTURING,Entry & Exit conditions do not behave as expected in Profile Wire EDM Sequences in Creo Parametric 2.0,A,3-HIGH,"Gupta, Arvind Kumar","Nath, Abhishek",WEDM,QA_PROCESSED_HIGH,OPEN,05-Dec-14,P-10-33,"Acquarone, Serge",P-10-30,,
+2249748-01,04-Dec-14,"KHS GMBH, SIT SISTEMI INFORMATICI E TELEMATICI SRL",Vericut,"Tool orientation is not showing correctly in Vericut
+",A,3-HIGH,"Gupta, Arvind Kumar","Nath, Abhishek",Vericut,QA_PROCESSED_HIGH,OPEN,16-Jan-15,P-10-34,"Martins, Paulo",P-10-30,,
+2250972-01,16-Dec-14,KHS GMBH,Vericut,Material removal simulation of a turning sequence in Vericut is hanging when CUTCOM has been set to YES,A,3-HIGH,"Gupta, Arvind Kumar","Nath, Abhishek",Vericut,,OPEN,05-Jan-15,P-10-34,"Gugg, Herbert",P-10-31,,
+2251260-01,18-Dec-14,TECHSOFT DATENVERARBEITUNG GMBH,MANUFACTURING,Start point of tool path of wire EDM sequence FID25 change when edit the definition of  sequence cut in Creo Parametric 2.0,B,3-HIGH,"Gupta, Arvind Kumar","Nath, Abhishek",WEDM,QA_PROCESSED_HIGH,OPEN,07-Jan-15,,"Benchekh, Abdelkerim",P-10-30,,
+2252032-01,29-Dec-14,TOBYHANNA ARMY DEPOT,INSTALLATION,How does Creo make use of MS Visual Studio 2005,A,3-HIGH,"Gupta, Arvind Kumar","Nath, Abhishek",Pro/ENGINEER - Windows Installer,QA_PROCESSED_HIGH,OPEN,26-Jan-15,,"Chant, Matthew P.",P-10-27,,
+2253386-01,13-Jan-15,CADCORNER BVBA,MANUFACTURING,Automatic material removal cut for a face milling sequence fails and can't be created,A,3-HIGH,"Gupta, Arvind Kumar","Nath, Abhishek",FACE,QA_PROCESSED_HIGH,OPEN,02-Feb-15,P-10-34,"Adordor, Hassan",P-10-30,,
+2254103-01,20-Jan-15,RENY AND COMPANY,MANUFACTURING,Exit reported creating Rest Finish sequence.c,X,3-HIGH,"Gupta, Arvind Kumar","Nath, Abhishek",Rest Finishing,QA_PROCESSED_HIGH,OPEN,09-Feb-15,P-20-66,"Deshpande, Amit",P-20-64,,
+2254166-01,21-Jan-15,PRO TECHNOLOGIES,Vericut,"Error occurs in Vericut when simulating a contour turning NC sequence with cutter 
+radius compensation set to Tool Edge.",A,3-HIGH,"Gupta, Arvind Kumar","Nath, Abhishek",Vericut,QA_PROCESSED_HIGH,OPEN,09-Mar-15,,"Tang, Xiao Yun",P-20-60,,
+2254167-01,21-Jan-15,PRO TECHNOLOGIES,Vericut,"Error occurs in Vericut when simulating a contour turning NC sequence with cutter 
+radius compensation set to Tool Edge.",A,3-HIGH,"Gupta, Arvind Kumar","Nath, Abhishek",Vericut,QA_PROCESSED_HIGH,OPEN,09-Mar-15,,"Tang, Xiao Yun",P-20-60,,
