@@ -1,0 +1,77 @@
+h1{
+  text-align:center;
+  text-transform:uppercase;
+  letter-spacing:-2px;
+  font-size:2.5em;
+  margin:20px 0;
+}
+
+.session-container {
+	display:inline-block; 
+	margin-right:10px; 
+	margin-bottom: 15px;
+	margin-top:10px;
+	padding:0;
+}
+
+.container{
+  width:100%;
+  margin:auto;
+}
+
+table{
+  border-collapse:collapse;
+  width:100%;
+}
+
+.blue{
+  border:2px solid #1ABC9C;
+}
+
+.blue thead{
+  background:#1ABC9C;
+}
+
+.purple{
+  border:2px solid #9B59B6;
+}
+
+.purple thead{
+  background:#9B59B6;
+}
+
+thead{
+  color:white;
+}
+
+th,td{
+  text-align:center;
+  padding:5px 0;
+  border:2px solid #1ABC9C;
+}
+
+th[data-sort]
+{
+	cursor:pointer;
+}
+
+.fixed{
+  top:0;
+  position:fixed;
+  width:auto;
+  display:none;
+  border:none;
+}
+
+.scrollMore{
+  margin-top:150px;
+}
+
+.show{
+	display: block;
+}
+
+.show{
+	display: none;
+}
+
