@@ -1,3 +1,20 @@
+<!-- 
+	File	: result.php
+	Author	: Abhishek Nath
+	Date	: 01-Jan-2015
+	Desc	: This file will be called by other files while they
+			  need to redirect for some result.
+			  Like: After succesfully creation of the userid,
+			  signup.php file call this file to pass the userid
+			  creation msg and redirect to index.php page.
+-->
+
+<!-- 
+	01-Jan-15   V1-01-00   abhishek   $$1   Created.
+	17-Jul-15   V1-01-00   abhishek   $$2   File header comment added.
+-->
+
+
 <?php
     $imagesPath = "images";
 	

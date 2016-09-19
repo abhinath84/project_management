@@ -1,4 +1,17 @@
 <?php
+	/*-- 
+		File	: inc/mysql_functions.inc.php
+		Author	: Abhishek Nath
+		Date	: 01-Jan-2015
+		Desc	: Established mysql connection.
+		          This file having all the mysql query related functions.
+	--*/
+	
+	/*-- 
+		01-Jan-15   V1-01-00   abhishek   $$1   Created.
+		17-Jul-15   V1-01-00   abhishek   $$2   File header comment added.
+	--*/
+
     require_once 'mysql_conn.inc.php';
 	require_once 'db.inc.php';
 	require_once 'variables.inc.php';

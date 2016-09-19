@@ -1,3 +1,18 @@
+<!-- 
+	File	: index.php
+	Author	: Abhishek Nath
+	Date	: 01-Jan-2015
+	Desc	: main/start html page for Project Management.
+			  If user is not logged in then page will show basic info
+			  of each module(sub-page).
+			  If user is logged in then it will show DASHBOARD for that user.
+-->
+
+<!-- 
+	01-Jan-15   V1-01-00   abhishek   $$1   Created.
+	17-Jul-15   V1-01-00   abhishek   $$2   File header comment added.
+-->
+
 <?php
 	/*ini_set('display_errors', 'On');
 	error_reporting(E_ALL);*/

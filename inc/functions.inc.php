@@ -14,6 +14,7 @@
 
 	/* include header file */
 	require_once ('variables.inc.php');
+	require_once ('htmltable.php');
 
 
     /**
@@ -205,7 +206,7 @@
 	* @return string $tag
     *   select tag string.
 	*/
-    function addInputTag($tagName, $type, $name, $caption, $event)
+    function addInputTag($tagName, $type, $name, $caption, $event, $placeholder)
     {
         $tagStr = '<div class="form-element" id="'.$name.'-form-element">';
         
@@ -216,6 +217,9 @@
 		if(($tagName <> "") && ($type <> ""))
 		{
 			$tagStr .= '				<'.$tagName.' type="'.$type.'"';
+			
+			if(($tagName == "input")&& ($placeholder))
+				$tagStr .= '  placeholder="'.$placeholder.'"';
 
 			if($event != "")
 				$tagStr .= ' '. $event;
@@ -227,6 +231,30 @@
 
         return($tagStr);
     }
+    
+    function getSPRString($spr_type, $spr_no)
+    {
+		$tag = "";
+		
+		if($spr_type == "SPR")
+		{
+			$tag .= '<a href="http://rdweb.ptc.com/WebSiebel/report.php?value='.$spr_no.
+								'+&spr_no='.$spr_no.'+&call_no=&mode=details&form=spr&do_not_check_ver=1" target="_blank">'.$spr_no.'</a>';
+		}
+		else if($spr_type == "REGRESSION")
+		{
+			$tag .= '<a href="http://regdb.ptc.com/regdb/servlet/Index?regbugid='.$spr_no.'&mode=basic" target="_blank">'.$spr_no.'</a>';
+		}
+		else if($spr_type == "INTEGRITY SPR")
+		{
+			$tag .= '<a href="http://integrity.ptc.com:7001/im/viewissue?selection='.$spr_no.'" target="_blank">'.$spr_no.'</a>';
+		}
+		else
+			$tag .= $spr_no;
+			
+			
+		return($tag);
+	}
     
 	function addInputTagArray($tags)
     {
@@ -877,25 +905,10 @@
 		return($tag);
 	}
 	
-	function showDashboard($id, $inputList, $tableList, $addCancelList)
+	function showDashboardTable($id, $year, $tableList)
 	{
 		$tag = "";
-		$year = getCurrentSession();
 		
-		
-		$tag .='<div id="'.$id.'-container">'."\n";
-		
-		// input section
-		if(!empty($inputList))
-		{
-			$tag .= getDashboardInputTag($id, $inputList);
-			// Show session combobox
-			$tag .= '<div style="border-top: 1px solid black; margin-top: 25px; padding-top: 15px;">';
-			$tag .= getSessionSelectTag($year, $inputList[0]);
-			$tag .= '</div>';
-		}
-		
-		// dashboard table
 		if(!empty($tableList))
 		{
 			$tag .= '<div>';
@@ -925,6 +938,29 @@
 			$tag .= '</div>';
 		}
 		
+		return(utf8_encode($tag));
+	}
+	
+	function showDashboard($id, $inputList, $tableList, $addCancelList)
+	{
+		$tag = "";
+		$year = getCurrentSession();
+		
+		$tag .='<div id="'.$id.'-container">'."\n";
+		
+		// input section
+		if(!empty($inputList))
+		{
+			$tag .= getDashboardInputTag($id, $inputList);
+			// Show session combobox
+			$tag .= '<div style="border-top: 1px solid black; margin-top: 25px; padding-top: 15px;">';
+			$tag .= getSessionSelectTag($year, $inputList[0]);
+			$tag .= '</div>';
+		}
+		
+		// dashboard table
+		$tag .= showDashboardTable($id, $year, $tableList);
+		
 		// add-cancel button
 		if(!empty($addCancelList))
 		{
@@ -938,6 +974,149 @@
 		
 		$tag .= '</div>'."\n";
 		$tag .= '<div id="popup-div"></div>';
+		
+		return(utf8_encode($tag));
+	}
+	
+	function showSPRTrackingReportSearchOptions()
+	{
+		$tag = "";
+		$current_session = getCurrentSession();
+		$sessions = getSessionList();
+        array_unshift($sessions, "All");
+		
+		/// Add search option tag.
+		$tag .= '<div id="main-search-container" style="margin-top: 20px;">'."\n";
+				
+		/// Add session tag
+		$tag .='<div id="search-session-container" style="float: left; width: 15%;">';
+		$tag .= '<label id="search-session-label">
+				<strong id="search-session-strong">Session </strong>
+				</label>'."\n";
+		$tag .= '<select id="search-session-select">'."\n";
+		foreach($sessions as $session)
+		{
+			if($session == $current_session)
+				$tag .='<option value="'.$session.'" selected>'.$session.'</option>'."\n";
+			else
+				$tag .='<option value="'.$session.'">'.$session.'</option>'."\n";
+		}
+		$tag .= '</select>'."\n";
+		$tag .='</div>';
+		
+		/// Add main search tag
+		$tag .='<div id="main-search-container" style="float: left; width: 20%">';
+		$tag .= '<label id="main-search-label">
+				<strong id="main-search-strong">Search for </strong>
+				</label>'."\n";
+		$tag .='<select id="main-search-select" onchange="javascript:showSPRTrackingReportSearchSubOptions(this)">'."\n";
+		$tag .='<option value="Blank" selected></option>'."\n";
+		$tag .='<option value="Commit Build">Commit Build</option>'."\n";
+		$tag .='<option value="Respond By">Respond By</option>'."\n";
+		$tag .='</select>'."\n";
+		$tag .='</div>';
+		
+		/// Add sub-search tag
+		$tag .='<div id="sub-search-container" style="float: left; width: 25%; display: none;">';
+		$tag .='<label id="sub-search-label">
+				<strong id="sub-search-strong">Condition </strong>
+				</label>'."\n";
+		$tag .='<select id="sub-search-select">'."\n";
+		$tag .='<option value="Blank" selected></option>'."\n";
+		//$tag .='<option value="Having Commit Build">Having Commit Build</option>'."\n";
+		//$tag .='<option value="Without Commit Build">Without Commit Build</option>'."\n";
+		$tag .='</select>'."\n";
+		$tag .='</div>';
+		
+		/// Add Search button tag
+		$tag .='<div id="search-button-container" style="float: left; width: 10%">';
+		$tag .= '	<button id="search-button" type="button" class="b-btn green" style = "margin-left:15px; margin-top: -3px;" 
+								onclick="javascript:showSPRTrackingReportSearchResult()">Search</button>'."\n";
+		$tag .='</div>'."\n";
+		$tag .='<div class="clear"></div>';
+					
+		$tag .='</div>'."\n";
+		
+		$tag .='<div id="search-result-container" style="margin-top: 20px; display: none;">'."\n";
+		$tag .='<p>Result is here</p>'."\n";
+		$tag .='</div>'."\n";
+		
+		return(utf8_encode($tag));
+	}
+	
+	function generateSPRTrackingReport($qry)
+	{
+		global $conn;
+		$str = "";
+		
+		/// SELECT spr_no, type, status, build_version, commit_build, respond_by_date, comment, session FROM `spr_tracking`
+		$rows = $conn->result_fetch_array($qry);
+		if(!empty($rows))
+		{
+			$Table = new HTMLTable("spr-tracking-report-table", "blue");
+
+			// add table header
+			$Table->thead("spr-tracking-report-thead");
+			
+			$Table->th("Item number", null, null, null, "data-sort=\"int\"");
+			$Table->th("Type", null,  null, null, "data-sort=\"string\"");
+			$Table->th("Status", null, null, null, "data-sort=\"string\"");
+			$Table->th("Build Version", null, null, null, "data-sort=\"string\"");
+			$Table->th("Commit Build", null, null, null, "data-sort=\"string\"");
+			$Table->th("Respond By", null, null, null, "data-sort=\"string\"");
+			$Table->th("Comment", null, null, null, "data-sort=\"string\"");
+			$Table->th("Session", null, null, null, "data-sort=\"string\"");
+
+			// add Table body
+			$Table->tbody("spr-tracking-dashboard-tbody");
+			
+			// loop over the result and fill the rows
+			foreach($rows as $row)
+			{
+			
+				$Table->tr();
+				
+				$Table->td(getSPRString($row[1], $row[0]), "{$row[0]}-spr-no", null, null, "width=\"12%\"");
+				$Table->td("{$row[1]}", "{$row[0]}-type", null, null, "width=\"8%\"");
+				$Table->td("{$row[2]}", "{$row[0]}-status", null, "background-color:'{getSPRTrackingStatusColor($row[2])}';", "width=\"15%\"");
+				$Table->td("{$row[3]}", "{$row[0]}-build_version", null, null, "width=\"12%\"");
+				$Table->td("{$row[4]}", "{$row[0]}-commit_build", null, null, "width=\"12%\"");
+				$Table->td("{$row[5]}", "{$row[0]}-respond_by_date", null, null, "width=\"12%\"");
+				$Table->td("{$row[6]}", "{$row[0]}-comment");
+				$Table->td("{$row[7]}", "{$row[0]}-session", null, null, "width=\"8%\"");
+			}
+			
+			$str = $Table->toHTML();
+		}
+		else
+		{
+			$str = "<p>No result !!!</p>";
+		}
+		
+		
+		return(utf8_encode($str));
+	}
+	
+	function showSPRTrackingReportSearchResult()
+	{
+		$tableList = array("20 items found", array(array("Item Number", "int"), array("Status", "string"), array("Commit Build", "string")
+							, array("Respond By", "string"), array("Comment-Full", ""), array("Session", "string")), "fillSPRTrackingSearchReportRow");
+							
+		$tag = "";
+		
+		/// Have some style .... draw a line to seperate result.
+		$tag .='<div id="spr-tracking-report-table-container" style="display: none;">';
+		$tag .='<div style="border-top: 1px solid black; margin-top: 20px; padding-top: 15px;">';
+		$tag .='</div>'."\n";
+		$tag .= showDashboardTable("spr-tracking-report", $current_session, $tableList);
+		$tag .='</div>'."\n";
+		
+		return(utf8_encode($tag));
+	}
+	
+	function fillSPRTrackingSearchReportRow()
+	{
+		$tag = "";
 		
 		return(utf8_encode($tag));
 	}
@@ -1235,7 +1414,7 @@
 			$qry = "SELECT spr_no, respond_by_date, commit_build, type 
 					FROM `spr_tracking` WHERE user_name =  '".$_SESSION["project-managment-username"]."' 
 					AND (TYPE =  'SPR' OR TYPE =  'INTEGRITY SPR') AND (STATUS <>  'NOT AN ISSUE' 
-					AND STATUS <>  'RESOLVED' AND STATUS <>  'CLOSED' AND STATUS <>  'SUBMITTED'
+					AND STATUS <>  'RESOLVED' AND STATUS <> 'CLOSED' AND STATUS <> 'SUBMITTED'
 					AND STATUS <> 'NEED MORE INFO' AND STATUS <> 'PASS TO CORRESPONDING GROUP') AND respond_by_date BETWEEN  '".$date."' AND  '".$next_date."'";
 			
 			$rows = $conn->result_fetch_array($qry);

@@ -1,4 +1,16 @@
 <?php 
+	/*-- 
+		File	: inc/mysql_conn.inc.php
+		Author	: Abhishek Nath
+		Date	: 01-Jan-2015
+		Desc	: mysql_conn class connect with mysql server and execute all kind of queries.
+	--*/
+	
+	/*-- 
+		01-Jan-15   V1-01-00   abhishek   $$1   Created.
+		17-Jul-15   V1-01-00   abhishek   $$2   File header comment added.
+	--*/
+
 	/**
 	 * @abstract	mysql_conn
 	 * @author  	Abhishek Nath <abhi.ece.sit@gmail.com>
@@ -19,7 +31,7 @@
 	 *
 	 * @section DESCRIPTION
 	 *
-	 * The time class represents a moment of time.
+	 * mysql_conn class connect with mysql server and execute all kind of queries.
 	 */
 	
 	class mysql_conn

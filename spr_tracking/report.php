@@ -1,3 +1,15 @@
+<!-- 
+	File	: report.php
+	Author	: Abhishek Nath
+	Date	: 01-Jan-2015
+	Desc	: Page for SPR related report.
+-->
+
+<!-- 
+	01-Jan-15   V1-01-00   abhishek   $$1   Created.
+	17-Jul-15   V1-01-00   abhishek   $$2   File header comment added.
+-->
+
 <?php
 	/*ini_set('display_errors', 'On');
 	error_reporting(E_ALL);*/
@@ -69,16 +81,20 @@
 			 });
 			});
 			
-		  </script>
+		</script>
     </head>
     <body>
 		<?php
 			echo addHeader("SPR Tracking-Report", true);
 		?>
         <div id="wrapper" class="wrapper page-wrap">
+			<div id="main-container">
             <?php
-				//echo showSPRTrackingDashboard();               
+				/// show report options
+				echo showSPRTrackingReportSearchOptions();               
             ?>
+            </div>
+            <div id="popup-div"></div>
             <div style="margin-bottom: 25px;"></div>
         </div>
         <?php

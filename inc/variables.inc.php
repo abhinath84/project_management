@@ -1,4 +1,16 @@
 <?php
+	/*-- 
+		File	: inc/variables.php
+		Author	: Abhishek Nath
+		Date	: 01-Jan-2015
+		Desc	: Store all the global variables.
+	--*/
+	
+	/*-- 
+		01-Jan-15   V1-01-00   abhishek   $$1   Created.
+		17-Jul-15   V1-01-00   abhishek   $$2   File header comment added.
+	--*/
+
 	/* Define all global variables with default values*/
 	/*$imagesPath = "images";
 	

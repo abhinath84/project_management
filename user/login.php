@@ -1,3 +1,15 @@
+<!-- 
+	File	: login.php
+	Author	: Abhishek Nath
+	Date	: 01-Jan-2015
+	Desc	: Page for user login.
+-->
+
+<!-- 
+	01-Jan-15   V1-01-00   abhishek   $$1   Created.
+	17-Jul-15   V1-01-00   abhishek   $$2   File header comment added.
+-->
+
 <?php
     $imagesPath = "../images";
 	
@@ -74,8 +86,8 @@
 							<input type="hidden" name="page" id="page" value="login">
 							<input type="hidden" name="redirect" id="redirect" value=<?php if(isset($_GET['redirect'])) echo $_GET['redirect']; else echo "\"\""; ?>>
 							<?php
-								echo addInputTag('input', 'text', 'username', 'Username', '');
-								echo addInputTag('input', 'password', 'password', 'Password', '');
+								echo addInputTag('input', 'text', 'username', 'Username', '', '');
+								echo addInputTag('input', 'password', 'password', 'Password', '', '');
 							?>
 							<div class="form-element">
 								<input id="signIn" name="signIn" type="submit" value="Sign in" class="ent-button ent-button-submit" style="width: 150px; height:35px; margin-top: 20px;">

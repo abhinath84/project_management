@@ -1,4 +1,16 @@
-// JQuery related 
+/*-- 
+	File	: js/jqry.js
+	Author	: Abhishek Nath
+	Date	: 01-Jan-2015
+	Desc	: JQuery related functions.
+--*/
+
+/*-- 
+	01-Jan-15   V1-01-00   abhishek   $$1   Created.
+	17-Jul-15   V1-01-00   abhishek   $$2   File header comment added.
+--*/
+
+
 $(function(){
   // Helper function to convert a string of the form "Mar 15, 1987" into
   // a Date object.

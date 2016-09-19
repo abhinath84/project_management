@@ -13,11 +13,14 @@
 --*/
 
 /* Global Variables */
-var spr_tracking_status_list	= ['NONE', 'INVESTIGATING','NOT AN ISSUE','SUBMITTED','RESOLVED','PASS FOR TESTING','CLOSED','ON HOLD', 
-										'TESTING COMPLETE', 'PASS TO CORRESPONDING GROUP', 'NEED MORE INFO', 'OTHERS'];
-var spr_tracking_type_list 		= ['SPR','INTEGRITY SPR','REGRESSION','OTHERS'];
-var submission_status_list 		= ['NO', 'YES', 'N/A', 'IDLING', 'REOPENED'];
-var work_tracker_list 			= ['SPR', 'REG FIX', 'REGRESSION TEST', 'SF', 'REG CLEAN-UP', 'CONSULTATION', 'PROJECT', 'MISC', 'OTHERS'];
+var spr_tracking_status_list				= ['NONE', 'INVESTIGATING','NOT AN ISSUE','SUBMITTED','RESOLVED','PASS FOR TESTING','CLOSED','ON HOLD', 
+												'TESTING COMPLETE', 'PASS TO CORRESPONDING GROUP', 'NEED MORE INFO', 'OTHERS'];
+var spr_tracking_type_list 					= ['SPR','INTEGRITY SPR','REGRESSION','OTHERS'];
+var submission_status_list 					= ['NO', 'YES', 'N/A', 'IDLING', 'REOPENED'];
+var work_tracker_list 						= ['SPR', 'REG FIX', 'REGRESSION TEST', 'SF', 'REG CLEAN-UP', 'CONSULTATION', 'PROJECT', 'MISC', 'OTHERS'];
+var spr_tracking_report_search_sub_list		= [['Commit Build',['All', 'Having Commit Build', 'Without Commit Build']],
+											   ['Respond By', ['All']]
+											  ];
 
 
 /**************************************
@@ -537,9 +540,9 @@ function addSPRTrackingDashboardRow()
 						["input", "spr_no", [["size", "15"]], null],
 						["select", "type", null, spr_tracking_type_list],
 						["select", "status", null, spr_tracking_status_list],
-						["input", "build_version", [["size", "15"], ["onfocus", "openPopupDialog(this, getBuildVersionDialog);"]], null],
-						["input", "commit_build", [["size", "15"], , ["onfocus", "openPopupDialog(this, getCommitBuildDialog);"]], null],
-						["input", "respond_by_date", [["size", "15"]], null],
+						["input", "build_version", [["size", "15"],["placeholder", "Ex: L03,P10,P20"], ["onfocus", "openPopupDialog(this, getBuildVersionDialog);"]], null],
+						["input", "commit_build", [["size", "15"], ["placeholder", "X-XX-XX"], ["onfocus", "openPopupDialog(this, getCommitBuildDialog);"]], null],
+						["input", "respond_by_date", [["size", "15"], ["placeholder", "YYYY-MM-DD"]], null],
 						["textarea", "comment", [["spellcheck", "false"], ["rows", "4"], ["cols","25"], ["maxlength", "500"]], null],
 						["select", "session", [['sel', current_session]], getSessionList()]
 					];
@@ -576,10 +579,10 @@ function addWorkTrackerDashboardRow()
 	 * */
 	 
 	var inputList = [
-						["input", "day", [["size", "15"]], null],
+						["input", "day", [["size", "15"], ["placeholder", "YYYY-MM-DD"]], null],
 						["input", "task", [["size", "20"]], null],
 						["select", "category", null, work_tracker_list],
-						["input", "time", [["size", "15"]], null],
+						["input", "time", [["size", "15"], ["placeholder", "HH OR HH.MM"]], null],
 						["textarea", "comment", [["spellcheck", "false"], ["rows", "6"], ["cols","60"], ["maxlength", "500"]], null]
 					];
 					
@@ -1196,4 +1199,85 @@ function showFullComment(id, flag)
 	{
 		//show(false);
 	}
+}
+
+var spr_tracking_report_search_sub_list		= [['Commit Build',['All', 'Having Commit Build', 'Without Commit Build']],
+											   ['Respond By', ['All']]
+											  ];
+											  
+function showSPRTrackingReportSearchSubOptions(Obj)
+{
+	var sub_search_container = document.getElementById('sub-search-container');
+	var sub_search_select = document.getElementById('sub-search-select');
+	
+	/// reset 'sub-search-container' and select tag
+	sub_search_select.options[0].selected = true;
+	sub_search_container.style.display = 'none';
+	
+	/// get selected search option.
+	var main_search_option = Obj.options[Obj.selectedIndex].value;
+	
+	/// collect all the sub search option for the selected search option
+	for(var i = 0; i < spr_tracking_report_search_sub_list.length; i++)
+	{
+		if(spr_tracking_report_search_sub_list[i][0] == main_search_option)
+		{
+			/// reset all options of the sub-search-select.
+			for(var j = sub_search_select.options.length - 1; j>=0; j--)
+			{
+				sub_search_select.remove(j);
+			}
+			
+			/// Add 'Blank' option.
+			sub_search_select.options[0] = new Option(' ', 'Blank');
+			
+			/// and add them in the sub search list.
+			/// visible the sub search options.
+			for(var k = 0; k < spr_tracking_report_search_sub_list[i][1].length; k++)
+			{
+				sub_search_select.options[k+1] = new Option(spr_tracking_report_search_sub_list[i][1][k], 
+															spr_tracking_report_search_sub_list[i][1][k]);
+			}
+			
+			sub_search_select.options[0].selected = true;
+			sub_search_container.style.display = 'block';
+		}
+	}
+	/// if no sub option found then don't do any thing.
+}
+
+function showSPRTrackingReportSearchResult()
+{
+	/// reset all
+	var search_result_container = document.getElementById('search-result-container');
+	search_result_container.style.display = 'none';
+	
+	/// check for the black field.
+	///	'Search for' is empty?
+	var main_search_select = document.getElementById('main-search-select');
+	var main_search_select_string = main_search_select.options[main_search_select.selectedIndex].text;
+	if(main_search_select_string != "")
+	{
+		/// 'Condition' is empty?
+		var sub_search_select = document.getElementById('sub-search-select');
+		var sub_search_select_string = sub_search_select.options[sub_search_select.selectedIndex].text;
+		if(sub_search_select_string != "")
+		{
+			/// reset report table.
+			/// get selected value from all 3 select box.
+			/// make query according to the input.
+			/// display result.
+			var formData = {
+								'session'			: $('#search-session-select').val(),
+								'main_search'		: main_search_select_string,
+								'sub_search'		: sub_search_select_string
+							};
+			search_result_container.innerHTML = getServerResponseViaAJAX("../ajax/default.php", "showSPRTrackingReportCallback", formData, "");
+			search_result_container.style.display = 'block';
+		}
+		else
+			alert("Please select item from 'Condition' option!");
+	}
+	else
+		alert("Please select item from 'Search for' option!");
 }
