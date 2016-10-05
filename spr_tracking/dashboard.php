@@ -1,47 +1,29 @@
+<!--
+    File    : dashboard.php
+    Author    : Abhishek Nath
+    Date    : 01-Jan-2015
+    Desc    : Page for SPR tracking dashboard.
+-->
+
+<!--
+    01-Jan-15   V1-01-00   abhishek   $$1   Created.
+    17-Jul-15   V1-01-00   abhishek   $$2   File header comment added.
+-->
+
 <?php
-	/*ini_set('display_errors', 'On');
-	error_reporting(E_ALL);*/
-	
-	$imagesPath = "../images";
-	
-    $homeURL = "../index.php";
-	
-	$sprTrackingDashboardURL = "dashboard.php";
-	$sprTrackingNewSPRURL = "entry.php";
-	$sprTrackingSearchURL = "search.php";
-	$sprTrackingSubmitStatusURL = "submit_status.php";
-	$sprTrackingReportURL = "report.php";
-	
-	$scrumDashboardURL = "../scrum/dashboard.php";
-    $scrumSearchURL = "../scrum/search.php";
-    $sprintDashboardURL = "../sprint/dashboard.php";
-	$sprintSearchURL = "../sprint/search.php";
-	
-	$workTrackerDashboardURL = "../work_tracker/dashboard.php";
-	
-    $aboutURL = "";
-    $contactURL = "";
-    $profileURL = "";
-    
-    $logoutURL = "../result.php?action=logout";
-    $loginURL = "../user/login.php";
-    $signinURL = "../user/signUp.php";
-	$changePasswordURL = "";
-	
-    $copyrightURL = "../about/about_copyright.php";
-    $privacyURL = "../about/about_privacy.php";
-    
+    /*ini_set('display_errors', 'On');
+    error_reporting(E_ALL);*/
 
     require_once ('../inc/functions.inc.php');
     require_once ('../inc/mysql_functions.inc.php');
 
-	// Create Database and required tables
-	build_db();
+    // Create Database and required tables
+    build_db();
 
     // Initialize session data
-	session_start();
-	
-	// if not log in then redirect to login page.
+    session_start();
+
+    // if not log in then redirect to login page.
     if(!isset($_SESSION['project-managment-username']))
         header("Location: ../user/login.php?redirect=../spr_tracking/dashboard.php");
 ?>
@@ -60,29 +42,29 @@
         <script type="text/javascript" src="../js/stupidtable.min.js?dev"></script>
         <script type="text/javascript" src="../js/jqry.js"></script>
         <script>
-			$(document).ready(function(){
-			   $("table").fixMe();
-			   $(".up").click(function() {
-				  $('html, body').animate({
-				  scrollTop: 0
-			   }, 2000);
-			 });
-			});
-			
-		  </script>
+            $(document).ready(function(){
+               $("table").fixMe();
+               $(".up").click(function() {
+                  $('html, body').animate({
+                  scrollTop: 0
+               }, 2000);
+             });
+            });
+
+          </script>
     </head>
     <body>
-		<?php
-			echo addHeader("SPR Tracking-Dashboard", true);
-		?>
+        <?php
+            echo addHeader("SPR Tracking-Dashboard", true, "spr_tracking");
+        ?>
         <div id="wrapper" class="wrapper page-wrap">
             <?php
-				echo showSPRTrackingDashboard();               
+                echo showSPRTrackingDashboard();
             ?>
             <div style="margin-bottom: 25px;"></div>
         </div>
         <?php
-			echo addFooter(); 
+            echo addFooter("spr_tracking");
         ?>
     </body>
 </html>

@@ -1,4 +1,16 @@
 <?php
+    /*-- 
+	File	: inc/cipher.inc.php
+	Author	: Abhishek Nath
+	Date	: 01-Jan-2015
+	Desc	: Implement Cipher class.
+	--*/
+
+	/*-- 
+	01-Jan-15   V1-01-00   abhishek   $$1   Created.
+	17-Jul-15   V1-01-00   abhishek   $$2   File header comment added.
+	--*/
+
 	/**
 	 * @abstract	cipher
 	 * @author  	Abhishek Nath <abhi.ece.sit@gmail.com>

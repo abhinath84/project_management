@@ -1,32 +1,16 @@
-<?php
-    $imagesPath = "../images";
-	
-    $homeURL = "../index.php";
-	
-	$sprTrackingDashboardURL = "../spr_tracking/dashboard.php";
-	$sprTrackingNewSPRURL = "../spr_tracking/entry.php";
-	$sprTrackingSearchURL = "../spr_tracking/search.php";
-	$sprTrackingSubmitStatusURL = "../spr_tracking/submit_status.php";
-	
-	$scrumDashboardURL = "../scrum/dashboard.php";
-    $scrumSearchURL = "../scrum/search.php";
-    $sprintDashboardURL = "../sprint/dashboard.php";
-	$sprintSearchURL = "../sprint/search.php";
-	
-	$workTrackerDashboardURL = "../work_tracker/dashboard.php";
-	
-    $aboutURL = "";
-    $contactURL = "";
-    $profileURL = "";
-    
-    $logoutURL = "../result.php?action=logout";
-    $loginURL = "login.php";
-    $signinURL = "signUp.php";
-	$changePasswordURL = "";
-	
-    $copyrightURL = "../about/about_copyright.php";
-    $privacyURL = "../about/about_privacy.php";
+<!--
+	File	: login.php
+	Author	: Abhishek Nath
+	Date	: 01-Jan-2015
+	Desc	: Page for user login.
+-->
 
+<!--
+	01-Jan-15   V1-01-00   abhishek   $$1   Created.
+	17-Jul-15   V1-01-00   abhishek   $$2   File header comment added.
+-->
+
+<?php
     require_once '../inc/functions.inc.php';
     require_once '../inc/mysql_functions.inc.php';
 ?>
@@ -46,11 +30,11 @@
 				// process the form
 				$('#login-form').submit(function(event) {
 					loginSubmit();
-					
+
 					// stop the form from submitting the normal way and refreshing the page
 					event.preventDefault();
 				});
-				
+
 				$(".up").click(function() {
 						$('html, body').animate({
 						scrollTop: 0
@@ -62,7 +46,7 @@
     </head>
     <body>
 		<?php
-			echo addHeader("Sign Up", false);
+			echo addHeader("Sign Up", false, "user");
 		?>
         <div id="wrapper" class="wrapper page-wrap">
             <!-- Create login form -->
@@ -74,8 +58,8 @@
 							<input type="hidden" name="page" id="page" value="login">
 							<input type="hidden" name="redirect" id="redirect" value=<?php if(isset($_GET['redirect'])) echo $_GET['redirect']; else echo "\"\""; ?>>
 							<?php
-								echo addInputTag('input', 'text', 'username', 'Username', '');
-								echo addInputTag('input', 'password', 'password', 'Password', '');
+								echo addInputTag('input', 'text', 'username', 'Username', '', '');
+								echo addInputTag('input', 'password', 'password', 'Password', '', '');
 							?>
 							<div class="form-element">
 								<input id="signIn" name="signIn" type="submit" value="Sign in" class="ent-button ent-button-submit" style="width: 150px; height:35px; margin-top: 20px;">
@@ -95,7 +79,7 @@
             <div style="margin-bottom: 25px;"></div>
         </div>
         <?php
-			echo addFooter();
+			echo addFooter("user");
 		?>
     </body>
 </html>

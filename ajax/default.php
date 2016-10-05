@@ -1,4 +1,21 @@
 <?php
+/* 
+	File	: ajax/default.php
+	Author	: Abhishek Nath
+	Date	: 01-Jan-2015
+	Desc	: this file is being called through ajax mechanism.
+			  it will do all the server-side work and pass the
+			  result to client-side through ajax.
+			  
+			  N.B: whenever you call via ajax, pass this file path as link
+			       for server-side work.
+--*/
+
+/*-- 
+	01-Jan-15   V1-01-00   abhishek   $$1   Created.
+	17-Jul-15   V1-01-00   abhishek   $$2   File header comment added.
+--*/
+
 /* initalize calling function*/
 
 require_once ('../inc/functions.inc.php');
@@ -493,6 +510,35 @@ function deleteSPRTrackingDashboardCallback()
 
 	// return all our data to an AJAX call
 	echo json_encode($data);
+}
+
+function showSPRTrackingReportCallback()
+{
+	$data = array(); 		// array to pass back data
+	// $data['success'] = deleteTableElement('spr_tracking', $where);
+	
+	$session = $_POST['session'];
+	$main_search = $_POST['main_search'];
+	$sub_search = $_POST['sub_search'];
+	
+	$qry = "SELECT spr_no, type, status, build_version, commit_build, respond_by_date, comment, session FROM `spr_tracking` 
+			WHERE user_name =  '{$_SESSION['project-managment-username']}' AND session = {$session} AND (type <> 'REGRESSION' AND type <> 'OTHERS')";
+	
+	if($main_search == "Commit Build")
+	{	
+		if($sub_search == "Having Commit Build")	
+			$qry .= " AND commit_build <> ''";
+		else if($sub_search == "Without Commit Build")
+			$qry .= " AND commit_build = ''";
+	}
+	//else if($main_search == "Respond By")
+	//{
+		//$qry .= " AND commit_build <> ''";
+	//}
+	
+	$str = generateSPRTrackingReport($qry);
+	
+	echo json_encode($str);
 }
 
 function importExportCSVCallback()

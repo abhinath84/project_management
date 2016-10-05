@@ -1,46 +1,30 @@
+<!--
+    File    : index.php
+    Author    : Abhishek Nath
+    Date    : 01-Jan-2015
+    Desc    : main/start html page for Project Management.
+              If user is not logged in then page will show basic info
+              of each module(sub-page).
+              If user is logged in then it will show DASHBOARD for that user.
+-->
+
+<!--
+    01-Jan-15   V1-01-00   abhishek   $$1   Created.
+    17-Jul-15   V1-01-00   abhishek   $$2   File header comment added.
+-->
+
 <?php
-	/*ini_set('display_errors', 'On');
-	error_reporting(E_ALL);*/
-	
-	$imagesPath = "images";
-	
-    $homeURL = "index.php";
-	
-	$sprTrackingDashboardURL = "spr_tracking/dashboard.php";
-	$sprTrackingNewSPRURL = "spr_tracking/entry.php";
-	$sprTrackingSearchURL = "spr_tracking/search.php";
-	$sprTrackingSubmitStatusURL = "spr_tracking/submit_status.php";
-	$sprTrackingReportURL = "spr_tracking/report.php";
-	
-	$scrumDashboardURL = "scrum/dashboard.php";
-    $scrumSearchURL = "scrum/search.php";
-    $sprintDashboardURL = "sprint/dashboard.php";
-	$sprintSearchURL = "sprint/search.php";
-	
-	$workTrackerDashboardURL = "work_tracker/dashboard.php";
-	
-    $aboutURL = "";
-    $contactURL = "";
-    $profileURL = "user/profile.php";
-    
-    $logoutURL = "result.php?action=logout";
-    $loginURL = "user/login.php";
-    $signinURL = "user/signUp.php";
-	$changePasswordURL = "";
-	
-    $copyrightURL = "about/about_copyright.php";
-    $privacyURL = "about/about_privacy.php";
-    
-    
+    /*ini_set('display_errors', 'On');
+    error_reporting(E_ALL);*/
 
     require_once ('inc/functions.inc.php');
     require_once ('inc/mysql_functions.inc.php');
 
-	// Create Database and required tables
-	build_db();
+    // Create Database and required tables
+    build_db();
 
     // Initialize session data
-	session_start();
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -53,41 +37,41 @@
         <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
         <script type="text/javascript" src="js/functions.js"></script>
         <script type="text/javascript">
-		$(document).ready(function(){
-		   $(".up").click(function() {
-			  $('html, body').animate({
-			  scrollTop: 0
-		   }, 2000);
-		 });
-		});	
-		</script>
+        $(document).ready(function(){
+           $(".up").click(function() {
+              $('html, body').animate({
+              scrollTop: 0
+           }, 2000);
+         });
+        });
+        </script>
     </head>
     <body>
-		<?php
-			echo addHeader("HOME", true);
-		?>
+        <?php
+            echo addHeader("HOME", true, "base");
+        ?>
         <div id="wrapper" class="wrapper page-wrap">
             <!-- Main Article-->
             <div class="clear">
                 <div id="main-article-container">
-					<?php
-						if((isset($_SESSION["project-managment-username"])) && ($_SESSION["project-managment-username"] != ""))
-						{
-							echo getUserInfoContainer();
-						}
-						else
-						{
-							echo getPMShortDesc();
-							echo getArticleContainer();
-						}
-					?>
+                    <?php
+                        if((isset($_SESSION["project-managment-username"])) && ($_SESSION["project-managment-username"] != ""))
+                        {
+                            echo getUserInfoContainer();
+                        }
+                        else
+                        {
+                            echo getPMShortDesc();
+                            echo getArticleContainer();
+                        }
+                    ?>
                 </div>
             </div>
-            
-			<div class="clear" style="padding-top:20px"></div>
+
+            <div class="clear" style="padding-top:20px"></div>
         </div>
         <?php
-			echo addFooter();
+            echo addFooter("base");
         ?>
     </body>
 </html>

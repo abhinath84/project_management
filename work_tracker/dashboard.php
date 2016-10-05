@@ -1,36 +1,18 @@
+<!--
+	File	: dashboard.php
+	Author	: Abhishek Nath
+	Date	: 01-Jan-2015
+	Desc	: Page for Daily Work Tracking dashboard.
+-->
+
+<!--
+	01-Jan-15   V1-01-00   abhishek   $$1   Created.
+	17-Jul-15   V1-01-00   abhishek   $$2   File header comment added.
+-->
+
 <?php
 	/*ini_set('display_errors', 'On');
 	error_reporting(E_ALL);*/
-	
-	$imagesPath = "../images";
-	
-    $homeURL = "../index.php";
-	
-	$sprTrackingDashboardURL = "../spr_tracking/dashboard.php";
-	$sprTrackingNewSPRURL = "../spr_tracking/entry.php";
-	$sprTrackingSearchURL = "../spr_tracking/search.php";
-	$sprTrackingSubmitStatusURL = "../spr_tracking/submit_status.php";
-	$sprTrackingReportURL = "../spr_tracking/report.php";
-	
-	$scrumDashboardURL = "../scrum/dashboard.php";
-    $scrumSearchURL = "../scrum/search.php";
-    $sprintDashboardURL = "../sprint/dashboard.php";
-	$sprintSearchURL = "../sprint/search.php";
-	
-	$workTrackerDashboardURL = "dashboard.php";
-	
-    $aboutURL = "";
-    $contactURL = "";
-    $profileURL = "";
-    
-    $logoutURL = "../result.php?action=logout";
-    $loginURL = "../user/login.php";
-    $signinURL = "../user/signUp.php";
-	$changePasswordURL = "";
-	
-    $copyrightURL = "../about/about_copyright.php";
-    $privacyURL = "../about/about_privacy.php";
-    
 
     require_once ('../inc/functions.inc.php');
     require_once ('../inc/mysql_functions.inc.php');
@@ -40,7 +22,7 @@
 
     // Initialize session data
 	session_start();
-	
+
 	// if not log in then redirect to login page.
     if(!isset($_SESSION['project-managment-username']))
         header("Location: ../user/login.php?redirect=../work_tracker/dashboard.php");
@@ -71,7 +53,7 @@
     </head>
     <body>
 		<?php
-			echo addHeader("Work Tracker", true);
+			echo addHeader("Work Tracker", true, "work_tracker");
 		?>
         <div id="wrapper" class="wrapper page-wrap">
             <?php
@@ -80,7 +62,7 @@
             <div style="margin-bottom: 25px;"></div>
         </div>
         <?php
-			echo addFooter(); 
+			echo addFooter("work_tracker");
         ?>
     </body>
 </html>
