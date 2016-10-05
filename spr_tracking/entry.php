@@ -1,47 +1,16 @@
-<!-- 
+<!--
 	File	: entry.php
 	Author	: Abhishek Nath
 	Date	: 01-Jan-2015
 	Desc	: Page to enter a new SPR for tracking.
 -->
 
-<!-- 
+<!--
 	01-Jan-15   V1-01-00   abhishek   $$1   Created.
 	17-Jul-15   V1-01-00   abhishek   $$2   File header comment added.
 -->
 
 <?php
-    $imagesPath = "../images";
-	
-    $homeURL = "../index.php";
-	
-	$sprTrackingDashboardURL = "dashboard.php";
-	$sprTrackingNewSPRURL = "entry.php";
-	$sprTrackingSearchURL = "search.php";
-	$sprTrackingSubmitStatusURL = "submit_status.php";
-	
-	$scrumDashboardURL = "../scrum/dashboard.php";
-    $scrumSearchURL = "../scrum/search.php";
-    $sprintDashboardURL = "../sprint/dashboard.php";
-	$sprintSearchURL = "../sprint/search.php";
-	
-	$workTrackerDashboardURL = "../work_tracker/dashboard.php";
-	
-    $aboutURL = "";
-    $contactURL = "";
-    $profileURL = "";
-    
-    $logoutURL = "../result.php?action=logout";
-    $loginURL = "../user/login.php";
-    $signinURL = "../user/signUp.php";
-	$changePasswordURL = "";
-	
-    $copyrightURL = "../about/about_copyright.php";
-    $privacyURL = "../about/about_privacy.php";
-
-    require_once '../inc/functions.inc.php';
-    require_once '../inc/mysql_functions.inc.php';
-
     // Initialize session data
 	session_start();
 
@@ -63,26 +32,26 @@
     <body>
         <div id="wrapper" class="wrapper">
             <?php
-                echo addHeader();
+                echo addHeader("NEW", true, "spr_tracking");
             ?>
             <div id="entry-main" class="entry-main">
                 <section>
                     <?php
                         if(isset($_GET['spr-tracking-no']))
                             echo addEntryCaption($_GET['spr-tracking-no'], 'SPR');
-                        else 
+                        else
                             echo addEntryCaption("", 'SPR');
-                        
+
                     ?>
                     <div id="entry-form-div" class="entry-form-div">
                         <form class="spr-tracking-entry-form" id="spr-tracking-entry-form" action="../result.php" method="post">
                             <input type="hidden" name="page" id="page" value="spr-tracking-add">
                             <input type="hidden" name="username" id="username" value=<?php if(isset($_SESSION['project-managment-username'])) echo $_SESSION['project-managment-username']; else echo "\"\""?>>
-                            <input type="hidden" name="spr_tracking_no-original" id="spr_tracking_no-original" 
-                                value=<?php 
+                            <input type="hidden" name="spr_tracking_no-original" id="spr_tracking_no-original"
+                                value=<?php
                                         if(isset($_GET['spr_tracking_no']))
-                                            echo "'".$_GET['spr_tracking_no']."'"; 
-                                        else 
+                                            echo "'".$_GET['spr_tracking_no']."'";
+                                        else
                                             echo "\"\"";
                                       ?>
                             >
@@ -116,7 +85,7 @@
                 </section>
             </div>
             <?php
-                echo addFooter();
+                echo addFooter("spr_tracking");
             ?>
         </div>
         <?php

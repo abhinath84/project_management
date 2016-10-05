@@ -522,7 +522,7 @@ function showSPRTrackingReportCallback()
 	$sub_search = $_POST['sub_search'];
 	
 	$qry = "SELECT spr_no, type, status, build_version, commit_build, respond_by_date, comment, session FROM `spr_tracking` 
-			WHERE user_name =  '{$_SESSION['project-managment-username']}' AND session = {$session} AND type <> 'REGRESSION'";
+			WHERE user_name =  '{$_SESSION['project-managment-username']}' AND session = {$session} AND (type <> 'REGRESSION' AND type <> 'OTHERS')";
 	
 	if($main_search == "Commit Build")
 	{	

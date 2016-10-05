@@ -1,29 +1,16 @@
-<!-- 
+<!--
 	File	: recovery.php
 	Author	: Abhishek Nath
 	Date	: 01-Jan-2015
 	Desc	: Page for recovering user related info.
 -->
 
-<!-- 
+<!--
 	01-Jan-15   V1-01-00   abhishek   $$1   Created.
 	17-Jul-15   V1-01-00   abhishek   $$2   File header comment added.
 -->
 
 <?php
-    $imagesPath = "../images";
-    $homeURL = "../index.php";
-	
-    $aboutURL = "";
-    $contactURL = "";
-    $profileURL = "";
-    
-    $loginURL = "login.php";
-    $signinURL = "signUp.php";
-	
-    $copyrightURL = "../about/about_copyright.php";
-    $privacyURL = "../about/about_privacy.php";
-
     require_once '../inc/functions.inc.php';
     require_once '../inc/mysql_functions.inc.php';
 ?>
@@ -38,10 +25,10 @@
 			.login-main, #recovery-msg-container {
 				font-size: 15px;
 			}
-			
+
 			.side-align {
-				height:500px; 
-				margin-left:150px; 
+				height:500px;
+				margin-left:150px;
 				margin-top:20px;
 			}
         </style>
@@ -52,11 +39,11 @@
 
 				// set/reset default properties
 				$('#recovery-msg-container').css( "display", "none");
-				
+
 				// process the form
 				$('#recovery-form').submit(function(event) {
 					recoverySubmit();
-					
+
 					// stop the form from submitting the normal way and refreshing the page
 					event.preventDefault();
 				});
@@ -66,7 +53,7 @@
     </head>
     <body>
 		<?php
-			echo addHeader("", false);
+			echo addHeader("", false, "user");
 		?>
         <div id="wrapper" class="wrapper page-wrap">
             <!-- Create login form -->
@@ -108,7 +95,7 @@
             </div>
         </div>
         <?php
-		   echo addFooter();
+		   echo addFooter("user");
 		?>
     </body>
 </html>
