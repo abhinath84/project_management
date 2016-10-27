@@ -20,134 +20,6 @@
     require_once ('htmltable.php');
 
 
-    /**
-    * Create a link.
-    *
-    * Create a link with all the available options.
-    *
-    * @param string $content
-    *   Content of the link.
-    * @param string $href
-    *   Hyperlink address.
-    * @param string $class
-    *   class name.
-    * @param string $target
-    *   target name.
-    *
-    * @return nothing
-    */
-    /*function createLink($content, $linkProperties)
-    {
-        $tag = "<a";
-        foreach ($linkProperties as $each)
-        {
-            if($each != "")
-                $tag .= " $each";
-        }
-        $tag .=">$content</a>";
-
-        return($tag);
-    }*/
-
-    /**
-    * @brief
-    *
-    *
-    *
-    * @param string $mail
-    *
-    *
-    * @return bool
-    *
-    */
-    /*function createNavigator($contentArr, $hrefArr, $classArr, $targetArr, $selectedArr, $next)
-    {
-        $tag = "";
-        if((!empty($contentArr)) && (!empty($hrefArr)) && (count($contentArr) == count($hrefArr)))
-        {
-            $inx = 0;
-
-            foreach ($contentArr as $content)
-            {
-                $linkProp = array("href=\"$hrefArr[$inx]\"", "class=\"$classArr[$inx]\"",
-                                    "target=\"$targetArr[$inx]\"");
-                if((!empty($selectedArr)) && ($content == $selectedArr[0]))
-                    array_push($linkProp, $selectedArr[1]);
-
-                $tag .= createLink($content, $linkProp);
-                if($inx < count($contentArr) - 1)
-                    $tag .= $next;
-                $inx++;
-            }
-        }
-
-        return($tag);
-    }*/
-
-    /**
-    * Replace character in a string.
-    *
-    * Replace search character by replaced character in a string.
-    *
-    * @param string $str
-    *   string in which character will be replaced.
-    * @param string $searchChar
-    *   character to be replaced.
-    * @param string $replaceChar
-    *   character which replacing.
-    *
-    * @return string $result
-    *   new string with replaced character.
-    */
-    /*function replaceChar($str, $searchChar, $repChar)
-    {
-        $result = $str;
-        $len = strlen($repChar);
-        $pos = -($len);
-
-        // As 'strpos' return 0 for both search element in 0th position and if search character is not found.
-        if(substr($str, 0, 1) == $searchChar)
-        {
-            $result = $repChar . substr($str, 1);
-            $str = $result;
-            $pos = 0;
-        }
-
-        while($pos = strpos($result, $searchChar, $pos + $len))
-        {
-            $result = substr($str, 0, $pos) . $repChar . substr($str, $pos + 1);
-            $str = $result;
-        }
-
-        return($result);
-    }*/
-
-    /**
-    * Replace character in a string according to input array.
-    *
-    * Replace search character by replaced character in a string according to input array.
-    *
-    * @param string $str
-    *   string in which character will be replaced.
-    * @param Array $arr
-    *   Its a 2D Array with contain search and replace character in the following format:
-    *   $arr  = array( array(searchChar_1, replaceChar_1), array(searchChar_2, replaceChar_2), ..., array(searchChar_n, replaceChar_n).
-    *
-    * @return string $result
-    *   new string with replaced character.
-    */
-    /*function replaceCharArr($str, $arr)
-    {
-        $result = "";
-
-        foreach($arr as $each)
-        {
-            $result = replaceChar($str, $each[0], $each[1]);
-            $str = $result;
-        }
-
-        return($result);
-    }*/
 
     /**
     * add select tag.
@@ -258,23 +130,6 @@
 
         return($tag);
     }
-
-    /*function addInputTagArray($tags)
-    {
-        $tag = "";
-
-        foreach($tags as $each)
-            $tag .= addInputTag($each[0], $each[1], $each[2], $each[3], "");
-
-        return($tag);
-    }*/
-
-    /*function addSPRTrackingStatusTag()
-    {
-        $status = getEnumOptions('spr_tracking', 'status');
-
-        return(addSelectTag('status', 'Status', $status, ""));
-    }*/
 
     function getSessionList()
     {
@@ -1191,8 +1046,6 @@
     {
         $tag = "";
 
-        //echo($sprNo." ,".$type);
-
         if($type == "SPR")
         {
             $tag .= 'http://rdweb.ptc.com/WebSiebel/report.php?value='.$sprNo.
@@ -1303,16 +1156,5 @@
 
         return($isReleased);
     }
-
-    /*function getDateInFormat($date, $format)
-    {
-        $formattedDate = "";
-        if(($date != "") && ($format != ""))
-        {
-
-        }
-
-        return($formattedDate);
-    }*/
 
 ?>

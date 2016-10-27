@@ -55,19 +55,5 @@
     <?php
         $htmlBody = new SPRSubmitStatusHTML();
         echo $htmlBody->generateBody();
-    /*<body>
-        <?php
-            echo addHeader("SPR Tracking-Submit Status", true, "spr_tracking");
-        ?>
-        <div id="wrapper" class="wrapper page-wrap">
-            <?php
-                echo showSPRTrackingSubmissionStatus();
-            ?>
-            <div style="margin-bottom: 25px;"></div>
-        </div>
-        <?php
-            echo addFooter("spr_tracking");
-        ?>
-    </body>*/
     ?>
 </html>

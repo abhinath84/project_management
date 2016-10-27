@@ -1,6 +1,6 @@
 <!--
     File    : dashboard.php
-    Author    : Abhishek Nath
+    Author  : Abhishek Nath
     Date    : 01-Jan-2015
     Desc    : Page for Daily Work Tracking dashboard.
 -->
@@ -55,22 +55,5 @@
     <?php
         $htmlBody = new WorkTrackerHTML();
         echo $htmlBody->generateBody();
-
-        /*
-        <body>
-            <?php
-                echo addHeader("Work Tracker", true, "work_tracker");
-            ?>
-            <div id="wrapper" class="wrapper page-wrap">
-                <?php
-                    echo showWorkTrackerDashboard();
-                ?>
-                <div style="margin-bottom: 25px;"></div>
-            </div>
-            <?php
-                echo addFooter("work_tracker");
-            ?>
-        </body>
-        */
     ?>
 </html>

@@ -40,13 +40,13 @@
         <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
         <script type="text/javascript" src="js/functions.js"></script>
         <script type="text/javascript">
-        $(document).ready(function(){
-           $(".up").click(function() {
-              $('html, body').animate({
-              scrollTop: 0
-           }, 2000);
-         });
-        });
+            $(document).ready(function(){
+               $(".up").click(function() {
+                  $('html, body').animate({
+                  scrollTop: 0
+               }, 2000);
+             });
+            });
         </script>
     </head>
     <?php
