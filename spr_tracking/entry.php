@@ -71,7 +71,7 @@
                                 <div id="comment-errormsg-and-suggestions">
                                     <span role="alert" class="errormsg" id="errormsg_0_comment"></span>
                                     <div id='commentExistsError' style="display: none">
-                                    This username address already corresponds to an Account. Please <a href="#">reset it</a>.
+                                    This username already exists corresponds to an Account. Please <a href="#">reset it</a>.
                                     </div>
                                     <div class="comment-suggestions" id="comment-suggestions">
                                     </div>
@@ -94,12 +94,12 @@
                 addSPRTrackingInfo($_GET['spr-tracking-no'], $_SESSION['project-managment-username']);
         ?>
                 <script>
-                    document.getElementById('spr-no').value           = document.getElementById('spr-no-lbl').innerHTML;
-                    document.getElementById('status').value       = document.getElementById('status-lbl').innerHTML;
-                    document.getElementById('session').value       = document.getElementById('session-lbl').innerHTML;
-                    document.getElementById('build-version').value       = document.getElementById('build-version-lbl').innerHTML;
-                    document.getElementById('commit-build').value          = document.getElementById('commit-build-lbl').innerHTML;
-                    document.getElementById('comment').value    = document.getElementById('comment-lbl').innerHTML;
+                    document.getElementById('spr-no').value = document.getElementById('spr-no-lbl').innerHTML;
+                    document.getElementById('status').value = document.getElementById('status-lbl').innerHTML;
+                    document.getElementById('session').value = document.getElementById('session-lbl').innerHTML;
+                    document.getElementById('build-version').value = document.getElementById('build-version-lbl').innerHTML;
+                    document.getElementById('commit-build').value = document.getElementById('commit-build-lbl').innerHTML;
+                    document.getElementById('comment').value = document.getElementById('comment-lbl').innerHTML;
                 </script>
         <?php
             }

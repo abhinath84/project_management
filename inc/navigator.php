@@ -51,7 +51,7 @@
                 $tag .= '    <div id="top-header">' . EOF_LINE;
                 $tag .= '        <!-- Logo and others -->' . EOF_LINE;
                 $tag .= '        <div id="banner">' . EOF_LINE;
-                $tag .= '            <a href="'. getNavURL($currentDir, $this->baseDir, $this->homeURL) .'">' . EOF_LINE;
+                $tag .= '            <a href="'. $this->getNavURL($currentDir, $this->baseDir, $this->homeURL) .'">' . EOF_LINE;
                 $tag .= '                <img src="'. $this->imagesPath .'/ptc-big.png" alt="ptc.com" height="50" width="400" />' . EOF_LINE;
                 $tag .= '            </a>' . EOF_LINE;
                 $tag .= '        </div>' . EOF_LINE;
@@ -71,33 +71,33 @@
                     $tag .= '        <div id="nav-wrapper" class="middle-align">' . EOF_LINE;
                     $tag .= '            <div id="left-nav">' . EOF_LINE;
                     $tag .= '                <ul>' . EOF_LINE;
-                    $tag .= '                    <li ' . ($selNav == "HOME" ? 'class="selected"' : '') . '><a href="'. getNavURL($currentDir, $this->baseDir, $this->homeURL) .'" target="_top">HOME</a></li>' . EOF_LINE;
+                    $tag .= '                    <li ' . ($selNav == "HOME" ? 'class="selected"' : '') . '><a href="'. $this->getNavURL($currentDir, $this->baseDir, $this->homeURL) .'" target="_top">HOME</a></li>' . EOF_LINE;
                     $tag .= '                    <li ' . ((($selNav == "SPR Tracking-Dashboard") || ($selNav == "SPR Tracking-Submit Status") || ($selNav == "SPR Tracking-Report")) ? 'class="selected"' : '') . '>' . EOF_LINE;
                     $tag .= '                        <a href="">SPR Tracking</a>' . EOF_LINE;
                     $tag .= '                        <ul>' . EOF_LINE;
-                    $tag .= '                            <li ' . ($selNav == "SPR Tracking-Dashboard" ? 'class="selected"' : 'class="non-selected"') . '><a href="'. getNavURL($currentDir, $this->sprTrackingDir, $this->sprTrackingDashboardURL) .'" target="_top">Dashboard</a></li>' . EOF_LINE;
-                    $tag .= '                            <li ' . ($selNav == "SPR Tracking-Submit Status" ? 'class="selected"' : 'class="non-selected"') . '><a href="'. getNavURL($currentDir, $this->sprTrackingDir, $this->sprTrackingSubmitStatusURL) .'" target="_top">Submit Status</a></li>' . EOF_LINE;
-                    $tag .= '                            <li ' . ($selNav == "SPR Tracking-Report" ? 'class="selected"' : 'class="non-selected"') . '><a href="'. getNavURL($currentDir, $this->sprTrackingDir, $this->sprTrackingReportURL) .'" target="_top">Report</a></li>' . EOF_LINE;
+                    $tag .= '                            <li ' . ($selNav == "SPR Tracking-Dashboard" ? 'class="selected"' : 'class="non-selected"') . '><a href="'. $this->getNavURL($currentDir, $this->sprTrackingDir, $this->sprTrackingDashboardURL) .'" target="_top">Dashboard</a></li>' . EOF_LINE;
+                    $tag .= '                            <li ' . ($selNav == "SPR Tracking-Submit Status" ? 'class="selected"' : 'class="non-selected"') . '><a href="'. $this->getNavURL($currentDir, $this->sprTrackingDir, $this->sprTrackingSubmitStatusURL) .'" target="_top">Submit Status</a></li>' . EOF_LINE;
+                    $tag .= '                            <li ' . ($selNav == "SPR Tracking-Report" ? 'class="selected"' : 'class="non-selected"') . '><a href="'. $this->getNavURL($currentDir, $this->sprTrackingDir, $this->sprTrackingReportURL) .'" target="_top">Report</a></li>' . EOF_LINE;
                     $tag .= '                        </ul>' . EOF_LINE;
                     $tag .= '                    </li>' . EOF_LINE;
-                    $tag .= '                    <li ' . ($selNav == "Work Tracker" ? 'class="selected"' : '') . '><a href="'. getNavURL($currentDir, $this->workTrackerDir, $this->workTrackerDashboardURL) .'" target="_top">Work Tracker</a></li>' . EOF_LINE;
+                    $tag .= '                    <li ' . ($selNav == "Work Tracker" ? 'class="selected"' : '') . '><a href="'. $this->getNavURL($currentDir, $this->workTrackerDir, $this->workTrackerDashboardURL) .'" target="_top">Work Tracker</a></li>' . EOF_LINE;
                     $tag .= '                    <li>' . EOF_LINE;
                     $tag .= '                        <a href="">Scrum</a>' . EOF_LINE;
                     $tag .= '                        <ul>' . EOF_LINE;
-                    $tag .= '                            <li><a href="'. getNavURL($currentDir, $this->scrumDir, $this->scrumDashboardURL) .'" target="_top">Dashboard</a></li>'."\n";
+                    $tag .= '                            <li><a href="'. $this->getNavURL($currentDir, $this->scrumDir, $this->scrumDashboardURL) .'" target="_top">Dashboard</a></li>'."\n";
                     $tag .= '                            <li>' . EOF_LINE;
                     $tag .= '                                <a href="" target="_top">Sprint</a>' . EOF_LINE;
                     $tag .= '                                <ul>' . EOF_LINE;
-                    $tag .= '                                    <li><a href="'. getNavURL($currentDir, $this->sprintDir, $this->sprintDashboardURL) .'" target="_top">Dashboard</a></li>' . EOF_LINE;
-                    $tag .= '                                    <li><a href="'. getNavURL($currentDir, $this->sprintDir, $this->sprintPlanningURL) .'" target="_top">Planning</a></li>' . EOF_LINE;
-                    $tag .= '                                    <li><a href="'. getNavURL($currentDir, $this->sprintDir, $this->sprintReviewURL) .'" target="_top">Review</a></li>' . EOF_LINE;
+                    $tag .= '                                    <li><a href="'. $this->getNavURL($currentDir, $this->sprintDir, $this->sprintDashboardURL) .'" target="_top">Dashboard</a></li>' . EOF_LINE;
+                    $tag .= '                                    <li><a href="'. $this->getNavURL($currentDir, $this->sprintDir, $this->sprintPlanningURL) .'" target="_top">Planning</a></li>' . EOF_LINE;
+                    $tag .= '                                    <li><a href="'. $this->getNavURL($currentDir, $this->sprintDir, $this->sprintReviewURL) .'" target="_top">Review</a></li>' . EOF_LINE;
                     $tag .= '                                </ul>' . EOF_LINE . EOF_LINE . EOF_LINE;
                     $tag .= '                            </li>' . EOF_LINE . EOF_LINE;
-                    $tag .= '                        <li ' . ($selNav == "Search" ? 'class="selected"' : '') . '><a href="'. getNavURL($currentDir, $this->scrumDir, $this->scrumSearchURL) .'" target="_top">Search</a></li>' . EOF_LINE;
+                    $tag .= '                        <li ' . ($selNav == "Search" ? 'class="selected"' : '') . '><a href="'. $this->getNavURL($currentDir, $this->scrumDir, $this->scrumSearchURL) .'" target="_top">Search</a></li>' . EOF_LINE;
                     $tag .= '                        </ul>' . EOF_LINE;
                     $tag .= '                    </li>' . EOF_LINE;
-                    $tag .= '                    <li ' . ($selNav == "About" ? 'class="selected"' : '') . '><a href="'. getNavURL($currentDir, $this->baseDir, $this->aboutURL) .'" target="_top">About</a></li>' . EOF_LINE . EOF_LINE;
-                    $tag .= '                    <li ' . ($selNav == "Contact us" ? 'class="selected"' : '') . '><a href="'. getNavURL($currentDir, $this->baseDir, $this->contactURL) .'" target="_top">Contact us</a></li>' . EOF_LINE;
+                    $tag .= '                    <li ' . ($selNav == "About" ? 'class="selected"' : '') . '><a href="'. $this->getNavURL($currentDir, $this->baseDir, $this->aboutURL) .'" target="_top">About</a></li>' . EOF_LINE . EOF_LINE;
+                    $tag .= '                    <li ' . ($selNav == "Contact us" ? 'class="selected"' : '') . '><a href="'. $this->getNavURL($currentDir, $this->baseDir, $this->contactURL) .'" target="_top">Contact us</a></li>' . EOF_LINE;
                     $tag .= '                </ul>' . EOF_LINE;
                     $tag .= '            </div>' . EOF_LINE;
                     $tag .= '            <div id="right-nav">' . EOF_LINE;
@@ -110,16 +110,16 @@
                         $tag .= '                    <li>' . EOF_LINE;
                         $tag .= '                        <a href="#" target="_top">'.$fname.' '.$lname.' &#9660;</a>' . EOF_LINE;
                         $tag .= '                        <ul style="text-align: left;">' . EOF_LINE . EOF_LINE . EOF_LINE . EOF_LINE;
-                        $tag .= '                            <li><a href="'. getNavURL($currentDir, $this->userDir, $this->profileURL) .'" target="_top">Profile</a></li>' . EOF_LINE . EOF_LINE . EOF_LINE;
-                        $tag .= '                            <li><a href="'. getNavURL($currentDir, $this->userDir, $this->changePasswordURL) .'" target="_top">Change Password</a></li>' . EOF_LINE . EOF_LINE;
-                        $tag .= '                            <li><a href="'. getNavURL($currentDir, $this->baseDir, $this->logoutURL) .'" target="_top">Logout</a></li>' . EOF_LINE;
+                        $tag .= '                            <li><a href="'. $this->getNavURL($currentDir, $this->userDir, $this->profileURL) .'" target="_top">Profile</a></li>' . EOF_LINE . EOF_LINE . EOF_LINE;
+                        $tag .= '                            <li><a href="'. $this->getNavURL($currentDir, $this->userDir, $this->changePasswordURL) .'" target="_top">Change Password</a></li>' . EOF_LINE . EOF_LINE;
+                        $tag .= '                            <li><a href="'. $this->getNavURL($currentDir, $this->baseDir, $this->logoutURL) .'" target="_top">Logout</a></li>' . EOF_LINE;
                         $tag .= '                        </ul>' . EOF_LINE;
                         $tag .= '                    </li>' . EOF_LINE . EOF_LINE . EOF_LINE;
                     }
                     else
                     {
-                        $tag .= '                <li><a href="'. getNavURL($currentDir, $this->userDir, $this->loginURL) .'" target="_top">Login</a></li>' . EOF_LINE . EOF_LINE;
-                        $tag .= '                <li><a href="'. getNavURL($currentDir, $this->userDir, $this->signinURL) .'" target="_top">Sign Up</a></li>' . EOF_LINE;
+                        $tag .= '                <li><a href="'. $this->getNavURL($currentDir, $this->userDir, $this->loginURL) .'" target="_top">Login</a></li>' . EOF_LINE . EOF_LINE;
+                        $tag .= '                <li><a href="'. $this->getNavURL($currentDir, $this->userDir, $this->signinURL) .'" target="_top">Sign Up</a></li>' . EOF_LINE;
                     }
 
                     $tag .= '                </ul>' . EOF_LINE;
@@ -152,19 +152,19 @@
                     $tag .= '<div class="site-footer" style="background-color: #CBC8C8; padding-bottom: 72px;">' . EOF_LINE;
 
                 $tag .= '   <div class="middle-align footer">' . EOF_LINE;
-                $tag .= '        <a id="footer-logo" class="footer-logo" href="'. getNavURL($currentDir, "base", $this->homeURL) .'"><img style="border:0" src="'. $this->imagesPath .'/ptc-small.gif" alt="ptc.com"></a>' . EOF_LINE;
+                $tag .= '        <a id="footer-logo" class="footer-logo" href="'. $this->getNavURL($currentDir, "base", $this->homeURL) .'"><img style="border:0" src="'. $this->imagesPath .'/ptc-small.gif" alt="ptc.com"></a>' . EOF_LINE;
                 $tag .= '        <nav class="footer-nav">' . EOF_LINE;
-                $tag .= '            <a href="'. getNavURL($currentDir, "base", $this->homeURL) .'">HOME</a> |' . EOF_LINE;
+                $tag .= '            <a href="'. $this->getNavURL($currentDir, "base", $this->homeURL) .'">HOME</a> |' . EOF_LINE;
                 $tag .= '            <a class="up">TOP</a> |' . EOF_LINE;
-                $tag .= '            <a href="'. getNavURL($currentDir, "base", $this->aboutURL) .'">ABOUT</a>' . EOF_LINE;
+                $tag .= '            <a href="'. $this->getNavURL($currentDir, "base", $this->aboutURL) .'">ABOUT</a>' . EOF_LINE;
                 $tag .= '        </nav>' . EOF_LINE;
                 $tag .= '        <div class="copyright">' . EOF_LINE;
                 $tag .= '            PTC project management is optimized for SPR tracking, Scrum.' . EOF_LINE;
                 $tag .= '            Its help user to maintain SPR records and scrum methodology.<br>' . EOF_LINE;
                 $tag .= '            While using this site, you agree to have read and accepted our' . EOF_LINE;
-                $tag .= '            <a href="'. getNavURL($currentDir, "about", $this->copyrightURL) .'">terms of use</a> and
-                                    <a href="'. getNavURL($currentDir, "about", $this->privacyURL) .'">privacy policy</a>.<br>' . EOF_LINE;
-                $tag .= '            <a href="'. getNavURL($currentDir, "about", $this->copyrightURL) .'">Copyright 1999-2014</a> by Abhishek Nath. All Rights Reserved.<br><br>' . EOF_LINE;
+                $tag .= '            <a href="'. $this->getNavURL($currentDir, "about", $this->copyrightURL) .'">terms of use</a> and
+                                    <a href="'. $this->getNavURL($currentDir, "about", $this->privacyURL) .'">privacy policy</a>.<br>' . EOF_LINE;
+                $tag .= '            <a href="'. $this->getNavURL($currentDir, "about", $this->copyrightURL) .'">Copyright 1999-2014</a> by Abhishek Nath. All Rights Reserved.<br><br>' . EOF_LINE;
                 $tag .= '        </div>' . EOF_LINE;
                 $tag .= '   </div>' . EOF_LINE;
 
@@ -174,7 +174,6 @@
 
             return($tag);
         }
-
 
         /// private methods
         private function getNavURL($currentDir, $pageDir, $page)
@@ -201,5 +200,4 @@
             return($finalURL);
         }
     }
-
 ?>

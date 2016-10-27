@@ -1,16 +1,17 @@
 <?php
     /*
         File    : functions.inc.php
-        Author    : Abhishek Nath
+        Author  : Abhishek Nath
         Date    : 01-Jan-2015
-        Desc    : Common function (php) to use in server-side files.
+        Desc    : Common functions (php) to use in server-side files.
     */
 
     /*
         01-Jan-15   V1-01-00   abhishek   $$1   Created.
         17-Jul-15   V1-01-00   abhishek   $$2   File header comment added.
-        14-Aug-15   V1-01-00   abhishek   $$3   Change BG color for 'RESOLVED' status, same as 'CLOSED'status.
-        14-Aug-15   V1-01-00   abhishek   $$3   write getNavURL() function and updated calling files.
+        14-Aug-15   V1-01-00   abhishek   $$3   Change BG color for 'RESOLVED' and 'CLOSED' status.
+        14-Aug-15   V1-01-00   abhishek   $$3   Write getNavURL() function and updated calling files.
+        22-Aug-16   V1-01-00   abhishek   $$4   Removed unwanted functions.
     */
 
     /* include header file */
@@ -35,7 +36,7 @@
     *
     * @return nothing
     */
-    function createLink($content, $linkProperties)
+    /*function createLink($content, $linkProperties)
     {
         $tag = "<a";
         foreach ($linkProperties as $each)
@@ -46,7 +47,7 @@
         $tag .=">$content</a>";
 
         return($tag);
-    }
+    }*/
 
     /**
     * @brief
@@ -59,7 +60,7 @@
     * @return bool
     *
     */
-    function createNavigator($contentArr, $hrefArr, $classArr, $targetArr, $selectedArr, $next)
+    /*function createNavigator($contentArr, $hrefArr, $classArr, $targetArr, $selectedArr, $next)
     {
         $tag = "";
         if((!empty($contentArr)) && (!empty($hrefArr)) && (count($contentArr) == count($hrefArr)))
@@ -81,7 +82,7 @@
         }
 
         return($tag);
-    }
+    }*/
 
     /**
     * Replace character in a string.
@@ -98,28 +99,28 @@
     * @return string $result
     *   new string with replaced character.
     */
-    function replaceChar($str, $searchChar, $replaceChar)
+    /*function replaceChar($str, $searchChar, $repChar)
     {
         $result = $str;
-        $len = strlen($replaceChar);
+        $len = strlen($repChar);
         $pos = -($len);
 
         // As 'strpos' return 0 for both search element in 0th position and if search character is not found.
         if(substr($str, 0, 1) == $searchChar)
         {
-            $result = $replaceChar . substr($str, 1);
+            $result = $repChar . substr($str, 1);
             $str = $result;
             $pos = 0;
         }
 
         while($pos = strpos($result, $searchChar, $pos + $len))
         {
-            $result = substr($str, 0, $pos) . $replaceChar . substr($str, $pos + 1);
+            $result = substr($str, 0, $pos) . $repChar . substr($str, $pos + 1);
             $str = $result;
         }
 
         return($result);
-    }
+    }*/
 
     /**
     * Replace character in a string according to input array.
@@ -135,7 +136,7 @@
     * @return string $result
     *   new string with replaced character.
     */
-    function replaceCharArr($str, $arr)
+    /*function replaceCharArr($str, $arr)
     {
         $result = "";
 
@@ -146,7 +147,7 @@
         }
 
         return($result);
-    }
+    }*/
 
     /**
     * add select tag.
@@ -258,7 +259,7 @@
         return($tag);
     }
 
-    function addInputTagArray($tags)
+    /*function addInputTagArray($tags)
     {
         $tag = "";
 
@@ -266,14 +267,14 @@
             $tag .= addInputTag($each[0], $each[1], $each[2], $each[3], "");
 
         return($tag);
-    }
+    }*/
 
-    function addSPRTrackingStatusTag()
+    /*function addSPRTrackingStatusTag()
     {
         $status = getEnumOptions('spr_tracking', 'status');
 
         return(addSelectTag('status', 'Status', $status, ""));
-    }
+    }*/
 
     function getSessionList()
     {
@@ -316,12 +317,6 @@
         }
 
         return($tag);
-    }
-
-    function addSessionTag()
-    {
-
-        return(addSelectTag('session', 'Session', getSessionList(), ""));
     }
 
     function addGenderTag($event)
@@ -376,15 +371,6 @@
         return($tag);
     }
 
-    function insertTableHead($heads)
-    {
-        $tag = "";
-        foreach($heads as $head)
-            $tag .= '<th>'. $head .'</th>';
-
-        return($tag);
-    }
-
     function getCurrentSession()
     {
         $date = date("m-Y");
@@ -416,31 +402,6 @@
         return($build_info);
     }
 
-
-    function getNavURL($currentDir, $pageDir, $page)
-    {
-        $finalURL = "";
-        //$navList = ["base", "scrum", "spr_tracking", "sprint", "user", "work_tracker"];
-
-        if(($currentDir <> "") && ($pageDir <> "") && ($page <> ""))
-        {
-            /// check currentDir and pageDir is same or not.
-            /// if so then pass only page name.
-            if($currentDir === $pageDir)
-                $finalURL = $page;
-            /// else check currentDir == "base" or not, if so then no need to add leading '..'.
-            else if($currentDir === "base")
-                $finalURL = "{$pageDir}/{$page}";
-            /// else check pageDir = "base" or not, if so, then add leading '..' not pageDir name.
-            else if($pageDir === "base")
-                $finalURL = "../{$page}";
-            /// else add leading '..' to propagate proper directory.
-            else
-                $finalURL = "../{$pageDir}/{$page}";
-        }
-
-        return($finalURL);
-    }
 
     // *********************************************************** //
 
@@ -1074,73 +1035,6 @@
         return(showDashboard($id, $inputList, $tableList, $addCancelList));
     }
 
-    function getPMShortDesc()
-    {
-        return('<div id="main-article-desc-container" style="align:center; padding-top:20px;">
-                    <label id="session-label" style="font-size:15px">
-                        <strong id="desc-strong">Project Management</strong> Tool help user to organize
-                        SPRs(those are assinging to them). </br>It will help to tack SPR status, submission status and many other facilites.
-                        It also track user\'s daily work. It will generate weekly, monthly work reports.
-                        It also track your Scrum activities.
-                    </label>
-                </div>
-                <br>
-                <hr>');
-    }
-
-    function getArticleContainer()
-    {
-        $imagesPath = "images";
-
-        $sprTrackingDashboardURL = "spr_tracking/dashboard.php";
-        $sprTrackingSubmitStatusURL = "spr_tracking/submit_status.php";
-        $workTrackerDashboardURL = "work_tracker/dashboard.php";
-
-        $tag = '<div id="article-container" class="float-division" style="width:';
-        //$tag .= (((isset($_SESSION["project-managment-username"])) && ($_SESSION["project-managment-username"] != "")) ? "75" : "100");
-        $tag .='%; height: 100%; margin-top: 10px;">
-                    <div id="spr-tracking-article-container" class="float-division" style="width: 50%;">
-                        <a href="'. $sprTrackingDashboardURL .'">
-                            <img src="'. $imagesPath .'/spr_tracking_screen_.png" alt="SPR Tracking"
-                                style="border:0;" height="150px" />
-                        </a>
-                        <h4 style="font-size: 15px;">
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="'. $sprTrackingDashboardURL .'" style="text-decoration:none; color: #000">SPR Tacking</a>
-                        </h4>
-                        <p style="font-size: 13px;">Help user to manage SPRs those are assign to them.</p>
-                    </div>
-                    <div id="spr-submission-article-container" class="float-division" style="width: 45%;">
-                        <a href="'.$sprTrackingSubmitStatusURL.'">
-                            <img src="'. $imagesPath .'/spr_submission_status_screen_.png" alt="SPR Submission Status"
-                                    style="border:0;" height="150px" />
-                        </a>
-                        <h4 style="font-size: 15px;">
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="'.$sprTrackingSubmitStatusURL .'" style="text-decoration:none; color: #000">SPR Submission Status</a>
-                        </h4>
-                        <p style="font-size: 13px;">Help user to manage Submission status of SPRs.</p>
-                    </div>
-                    <div id="work-tracker-article-container" class="float-division" style="width: 45%;">
-                        <a href="'. $workTrackerDashboardURL .'">
-                            <img src="'. $imagesPath .'/work_tracker_screen_.png" alt="Work Tracker"
-                                    style="border:0;" height="150px" />
-                        </a>
-                        <h4 style="font-size: 15px;">
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="<?php echo $workTrackerDashboardURL ?>" style="text-decoration:none; color: #000">Work Tracker</a>
-                        </h4>
-                        <p style="font-size: 13px;">
-                            Help user to track their daily work.
-                            It will help them to understand how much time they spend for an SPR.
-                            This will help them in future for project planning purpose.
-                        </p>
-                    </div>
-                </div>';
-
-        return(utf8_encode($tag));
-    }
-
     function getBuildVersion($commit_build)
     {
         $version = "";
@@ -1293,48 +1187,6 @@
         return($ss);
     }
 
-    function getSPRHavingNextRespondBy()
-    {
-        global $conn;
-        $sprs = array();
-
-        if((isset($_SESSION["project-managment-username"])) && ($_SESSION["project-managment-username"] != ""))
-        {
-            $date = date('Y-m-d');
-
-            // date after next 1 month
-            list($year, $month, $day) = explode('-', $date);
-            if($month == '12')
-            {
-                $year = $year + 1;
-                $month = 1;
-            }
-            else
-                $month = $month + 1;
-
-            if($month < 10)
-                $month = '0'.$month;
-
-            $next_date = $year . '-' . $month . '-' . $day;
-
-            $qry = "SELECT spr_no, respond_by_date, commit_build, type
-                    FROM `spr_tracking` WHERE user_name =  '".$_SESSION["project-managment-username"]."'
-                    AND (TYPE =  'SPR' OR TYPE =  'INTEGRITY SPR') AND (STATUS <>  'NOT AN ISSUE'
-                    AND STATUS <>  'RESOLVED' AND STATUS <> 'CLOSED' AND STATUS <> 'SUBMITTED'
-                    AND STATUS <> 'NEED MORE INFO' AND STATUS <> 'PASS TO CORRESPONDING GROUP') AND respond_by_date BETWEEN  '".$date."' AND  '".$next_date."'";
-
-            $rows = $conn->result_fetch_array($qry);
-            foreach($rows as $row)
-            {
-                if($row[2] == "")
-                    array_push($sprs, [$row[0], $row[1], $row[3]]);
-            }
-
-        }
-
-        return($sprs);
-    }
-
     function getSPRLink($sprNo, $type)
     {
         $tag = "";
@@ -1463,146 +1315,4 @@
         return($formattedDate);
     }*/
 
-    function getRespondByDiv()
-    {
-        $NearByDate = 20;
-        $tag = "";
-        $tag .= '<div id="respondBy-container" class="dashboard-table left" style="width:25%;">';
-        $tag .= '<table>
-                    <thead>
-                        <tr>
-                            <th colspan="2"><h2 style="text-align:center;">Respond By</h2></th>
-                        </tr>
-                    </thead>
-                    <tbody>';
-        $respond_by = getSPRHavingNextRespondBy();
-        foreach($respond_by as $each)
-        {
-            $tag .= '        <tr>
-                                <td>
-                                    <p style="text-align:center; margin-top:4px; margin-bottom:4px;"><strong>
-                                        <a href="'.getSPRLink($each[0], $each[2]).'" target="_blank">'.$each[0].'</a></strong></p>
-                                </td>
-                                <td><p style="text-align:center; color: '.((isNearByDate($each[1], $NearByDate) == true) ? "red" : "black").'">'.$each[1].'</p></td>
-                            </tr>';
-        }
-        $tag .= '    </tbody>
-                </table>';
-        $tag .= '</div>';
-
-        return($tag);
-    }
-
-    function getCommitBuildDiv($buildVersions)
-    {
-        $tag = "";
-        if(!empty($buildVersions))
-        {
-            $tag .= '<div id="commit-build-container" class="dashboard-table left" style="width:39%;">';
-            $tag .= '<table style="width:100%;">
-                        <thead>
-                            <tr>
-                                <th colspan="2"><h2 style="text-align:center;">SPRs having Commit Build</h2></th>
-                            </tr>
-                        </thead>
-                        <tbody>';
-
-            foreach($buildVersions as $each)
-            {
-                // get SPRs having Commit build equals to current build.
-                $tag .= getCommitBuildRows(getPrevBuildVersion($each));
-
-                // get SPRs having Commit build equals to next build.
-                $tag .= getCommitBuildRows($each);
-            }
-
-            $tag .= '    </tbody>
-                    </table>';
-            $tag .= '</div>';
-        }
-
-        return($tag);
-    }
-
-    function getSubmissionStatusDiv()
-    {
-        $tag = "";
-        $tag .= '<div id="submission-status-container" class="dashboard-table left" style="width:35.7%;">';
-        $tag .= '<table style="width:100%;">
-                    <thead>
-                        <tr>
-                            <th colspan="2"><h2 style="text-align:center;">Submission/Port</h2></th>
-                        </tr>
-                    </thead>
-                    <tbody>';
-        $submission_status = getSubmissionStatus();
-        foreach($submission_status as $each)
-        {
-            $tag .= '    <tr>
-                            <td>
-                                <p style="text-align:center;"><strong><a href="'.getSPRLink($each[0], $each[2]).'"
-                                            target="_blank">'.$each[0].'</a></strong></p>
-                            </td>
-                            <td><p style="text-align:center;">'.$each[1].'</p></td>
-                        </tr>';
-        }
-        $tag .= '    </tbody>
-                </table>';
-        $tag .= '</div>';
-
-        return($tag);
-    }
-
-    function getNextCutOffDiv($nc)
-    {
-        $tag = "";
-        $nearByDateRange = 14;
-
-        if(!empty($nc))
-        {
-            $tag .= '<div id="nextCutOff-container" class="nextCutOff left">';
-            $tag .='    <div>
-                            <div id="build-status-container">
-                                <h2 style="text-align: center;"><strong>Build Status</strong></h2>
-                                <hr>';
-
-            foreach($nc as $each)
-                $tag .='         <p style="text-align: center;"><strong>'.$each[0].'</strong> :
-                                    <label style="color: '.((isNearByDate($each[1], $nearByDateRange) == true) ? "red" : "black").';">'.((isBuildReleased($each[1]) == true) ? "<strong>Releashed</strong>" : $each[1]).'<label></p>';
-
-            $tag .='        </div>';
-            $tag .='    </div>
-                    </div>';
-        }
-
-        return($tag);
-    }
-
-    function getUserInfoContainer()
-    {
-        $tag = "";
-        $nc = getNextCutOff('config/ptc_info.xml');
-
-        if(!empty($nc))
-        {
-            $tag .= '<div id="userinfo-container" class="left" style="width:72%; height: 100%; margin:0;">';
-
-            // get upcoming Respond by date (next 2 months)
-            $tag .= getRespondByDiv();
-
-            // get upcoming Commit Build information.
-            $tag .= getCommitBuildDiv([$nc[0][0], $nc[1][0], $nc[2][0], $nc[3][0]]);
-
-            // Get Submission Status Information.
-            $tag .= getSubmissionStatusDiv();
-
-            $tag .= '</div>';
-            $tag .= '<div class="left" style="width:2%">&nbsp;</div>';
-
-            // get Next Cutoff info
-            $tag .= getNextCutOffDiv($nc);
-        }
-
-        return(utf8_encode($tag));
-    }
 ?>

@@ -1,6 +1,6 @@
 <!--
     File    : index.php
-    Author    : Abhishek Nath
+    Author  : Abhishek Nath
     Date    : 01-Jan-2015
     Desc    : main/start html page for Project Management.
               If user is not logged in then page will show basic info
@@ -11,6 +11,8 @@
 <!--
     01-Jan-15   V1-01-00   abhishek   $$1   Created.
     17-Jul-15   V1-01-00   abhishek   $$2   File header comment added.
+    24-Oct-16   V1-01-00   abhishek   $$3   generate body tag from sub-class of
+                                            HTMLTemplate class.
 -->
 
 <?php
@@ -19,6 +21,7 @@
 
     require_once ('inc/functions.inc.php');
     require_once ('inc/mysql_functions.inc.php');
+    require_once ('inc/htmltemplate.php');
 
     // Create Database and required tables
     build_db();
@@ -46,32 +49,8 @@
         });
         </script>
     </head>
-    <body>
-        <?php
-            echo addHeader("HOME", true, "base");
-        ?>
-        <div id="wrapper" class="wrapper page-wrap">
-            <!-- Main Article-->
-            <div class="clear">
-                <div id="main-article-container">
-                    <?php
-                        if((isset($_SESSION["project-managment-username"])) && ($_SESSION["project-managment-username"] != ""))
-                        {
-                            echo getUserInfoContainer();
-                        }
-                        else
-                        {
-                            echo getPMShortDesc();
-                            echo getArticleContainer();
-                        }
-                    ?>
-                </div>
-            </div>
-
-            <div class="clear" style="padding-top:20px"></div>
-        </div>
-        <?php
-            echo addFooter("base");
-        ?>
-    </body>
+    <?php
+        $htmlBody = new HomeHTML();
+        echo $htmlBody->generateBody();
+    ?>
 </html>

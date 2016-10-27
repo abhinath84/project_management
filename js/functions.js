@@ -13,17 +13,16 @@
 --*/
 
 /* Global Variables */
-var spr_tracking_status_list                            = ['NONE', 'INVESTIGATING','NOT AN ISSUE','SUBMITTED',
-                                                                                            'RESOLVED','PASS FOR TESTING','CLOSED','ON HOLD',
-                                                                                            'TESTING COMPLETE', 'PASS TO CORRESPONDING GROUP',
-                                                                                            'NEED MORE INFO', 'OTHERS'];
-var spr_tracking_type_list                                 = ['SPR','INTEGRITY SPR','REGRESSION','OTHERS'];
-var submission_status_list                                 = ['NO', 'YES', 'N/A', 'IDLING', 'REOPENED'];
-var work_tracker_list                                         = ['SPR', 'REG FIX', 'REGRESSION TEST', 'SF', 'REG CLEAN-UP',
-                                                                                            'CONSULTATION', 'PROJECT', 'MISC', 'OTHERS'];
-var spr_tracking_report_search_sub_list        = [['Commit Build',['All', 'Having Commit Build', 'Without Commit Build']],
-                                                                                           ['Respond By', ['All']]
-                                                                                        ];
+var spr_tracking_status_list            = ['NONE', 'INVESTIGATING','NOT AN ISSUE','SUBMITTED',
+                                            'RESOLVED','PASS FOR TESTING','CLOSED','ON HOLD',
+                                            'TESTING COMPLETE', 'PASS TO CORRESPONDING GROUP',
+                                            'NEED MORE INFO', 'OTHERS'];
+var spr_tracking_type_list              = ['SPR','INTEGRITY SPR','REGRESSION','OTHERS'];
+var submission_status_list              = ['NO', 'YES', 'N/A', 'IDLING', 'REOPENED'];
+var work_tracker_list                   = ['SPR', 'REG FIX', 'REGRESSION TEST', 'SF', 'REG CLEAN-UP',
+                                            'CONSULTATION', 'PROJECT', 'MISC', 'OTHERS'];
+var spr_tracking_report_search_sub_list = [['Commit Build',['All', 'Having Commit Build',
+                                            'Without Commit Build']],['Respond By', ['All']]];
 
 
 /**************************************
@@ -155,14 +154,16 @@ function getServerResponseViaAJAX(urlPath, func, formData, params)
                 type: 'POST',
                 url: urlPath + "?f="+ func + par,
                 // call php function , phpFunction=function Name , x= parameter
-                async:false,
-                data: formData,
-                dataType     : 'json', // what type of data do we expect back from the server
-                encode         : true,
-                success: function(data){
+                async       :false,
+                data        : formData,
+                dataType    : 'json', // what type of data do we expect back from the server
+                encode      : true,
+                success: function(data)
+                {
                     returnval = data;
                 },
-                error:function(data){
+                error:function(data)
+                {
                     console.log(data);
                 }
             });
@@ -174,11 +175,11 @@ function serverRespondViaAJAX(url, callback, formData)
 {
     // call AJAX function
     $.ajax({
-        type         : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+        type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
         url         : url + '?f=' + callback, // the url where we want to POST
-        data         : formData, // our data object
-        dataType     : 'json', // what type of data do we expect back from the server
-        encode         : true
+        data        : formData, // our data object
+        dataType    : 'json', // what type of data do we expect back from the server
+        encode      : true
     })
 
     // handle error
@@ -803,8 +804,8 @@ function loginSubmit()
 
     // collect data from page
     var formData = {
-        'username'        : $('input[name=username]').val(),
-        'password'         : $('input[name=password]').val()
+        'username'  : $('input[name=username]').val(),
+        'password'  : $('input[name=password]').val()
     };
 
     // call AJAX function
@@ -823,7 +824,8 @@ function loginSubmit()
         console.log(data);
 
         // here we will handle errors and validation messages
-        if ( ! data.success) {
+        if ( ! data.success)
+        {
             if(data.errors.username)
             {
                 $('#username-input').addClass('form-error');
@@ -838,8 +840,9 @@ function loginSubmit()
                 $('#password-errmsg').text( data.errors.password );
             }
 
-        } else {
-
+        }
+        else
+        {
             // usually after form submission, you'll want to redirect
             var redirect = $('input[name=redirect]').val();
             if(redirect != "")
@@ -851,7 +854,6 @@ function loginSubmit()
 
     // using the fail promise callback
     .fail(function(data) {
-
         // show any errors
         // best to remove for production
         console.log(data);

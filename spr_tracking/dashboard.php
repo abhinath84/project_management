@@ -1,6 +1,6 @@
 <!--
     File    : dashboard.php
-    Author    : Abhishek Nath
+    Author  : Abhishek Nath
     Date    : 01-Jan-2015
     Desc    : Page for SPR tracking dashboard.
 -->
@@ -8,6 +8,8 @@
 <!--
     01-Jan-15   V1-01-00   abhishek   $$1   Created.
     17-Jul-15   V1-01-00   abhishek   $$2   File header comment added.
+    24-Oct-16   V1-01-00   abhishek   $$3   generate body tag from sub-class of
+                                            HTMLTemplate class.
 -->
 
 <?php
@@ -16,6 +18,7 @@
 
     require_once ('../inc/functions.inc.php');
     require_once ('../inc/mysql_functions.inc.php');
+    require_once ('../inc/htmltemplate.php');
 
     // Create Database and required tables
     build_db();
@@ -51,20 +54,11 @@
              });
             });
 
-          </script>
+        </script>
     </head>
-    <body>
-        <?php
-            echo addHeader("SPR Tracking-Dashboard", true, "spr_tracking");
-        ?>
-        <div id="wrapper" class="wrapper page-wrap">
-            <?php
-                echo showSPRTrackingDashboard();
-            ?>
-            <div style="margin-bottom: 25px;"></div>
-        </div>
-        <?php
-            echo addFooter("spr_tracking");
-        ?>
-    </body>
+    <?php
+        $htmlBody = new SPRTrackingHTML();
+
+        echo $htmlBody->generateBody();
+    ?>
 </html>

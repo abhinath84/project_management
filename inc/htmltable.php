@@ -37,12 +37,12 @@
 
     /**
      * @abstract    TComponent
-     * @author      Abhishek Nath <abhi.ece.sit@gmail.com>
+     * @author      Abhishek Nath
      * @version     1.0
      *
      * @section DESCRIPTION
      *
-     * mysql_conn class connect with mysql server and execute all kind of queries.
+     * .
      *
      */
     class TComponent
